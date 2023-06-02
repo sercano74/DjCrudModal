@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+
+
+<!-- Navbar content -->
+{% block navbar-content%}
+    <i class="text-warning fas fa-tshirt"></i>&nbsp;&nbsp; Product List
+{% endblock navbar-content%}
+
+
+<!-- Page content -->
+{% block content %}
+
+    {% comment %} <!-- Include add2-->        
+    {% block include-add2-h %} {% endblock include-add2-h %} {% endcomment %}
+
+    <div class='container'>
+    <br><br>
+    <button type="button"  class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#addModal" title='Add2 Product'>
+        <i class="fas fa-plus"></i> &nbsp;&nbsp; Add2 Product
+    </button>
+    
+    <table class="table table-bordered table-striped table-hover table-sm mt-2" style='text-align: center; font-size:12px;' >
+        <thead class="table-warning">
+            <tr>
+                <th style="width:10%;">#</th>
+                <th style="width:15%;">Name</th>
+                <th style="width:10%;">Purchase</th>
+                <th style="width:10%;">Sale Price</th>
+                <th style="width:10%;">Qty</th>
+                <th style="width:15%;">Gender</th>
+                <th style="width:15%;">Registered</th>
+                <th style="width:10%;" colspan="2">Actions </th>
+            </tr>
+        </thead>
+        <!-- BACKEND DATABASE -->
+        {% for product in products %}
+            <tr>
+                <td> {{product.id}}</td>
+                <td> {{product.name}}</td>
+                <td> {{product.purchase}}</td>
+                <td> {{product.sale}}</td>
+                <td> {{product.qty}}</td>
+                <td> {{product.gender}}</td>
+                <td> {{product.created | date:'Y/m/d (H:i)'}}</td>
+                
+                <td>
+                    <a class='btn btn-warning btn-actions' data-bs-toggle="modal" data-bs-target="#editModal{{product.pk}}" title='Edit Product {{product.pk}}'>
+                        <i class="fas fa-pen"></i>
+                    </a>
+                </td>
+                
+                <td>
+                    <a href="/delete2_product/{{product.id}}" class='btn btn-danger' title='Delete Product'>
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                </td>
+            </tr>
+
+            <!-- Include (Required here to get the Pk) -->
+            {% include 'edit2.html' %}
+
+        {% endfor %}
+    </table>
+
+    </div> <!-- /.container -->
+
+    <!--   Messages from BACKEND   --> 
+    {% for message in messages %}
+        {% if message.tags == 'success' %}
+            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+            <script >
+                var m = "{{ message }}"
+                swal("Perfect !",m, "success")
+            </script>
+        {% endif %}
+    {% endfor %}
+
+
+{% endblock content %}
+
