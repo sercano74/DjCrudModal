@@ -108,7 +108,7 @@ print('PATH : ', Path)
 DATABASES = {
     'default': dj_database_url.config(
         # Feel free to alter this value to suit your needs.
-        default='sqlite:///C:/Users/sergi/OneDrive/Escritorio/ProyectosDjango/DjCrudModal/db.sqlite3',
+        default='postgresql://postgres:postgres@localhost/postgres',
         conn_max_age=600
     )
 }
