@@ -1,5 +1,6 @@
 # ====================  ACCESO =====================
 # En CMD entrar al env\scripts\activate.bat
+# python manage.py runserver
 # usuario : admin
 # kw: admin
 # ==================================================
@@ -52,6 +53,8 @@ INSTALLED_APPS = [
 
 ]
 
+# pip install whitenoise[brotli]
+# Añadir la nueva dependencia al siguiente listado:
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -94,6 +97,13 @@ WSGI_APPLICATION = 'CRUD.wsgi.application'
 #     }
 # }
 print('BASE_DIR : ', BASE_DIR)
+print('PATH : ', Path)
+
+# pip install dj-database-url
+# luego
+# import dj_database_url
+# finalmente agregar modulo de postgre
+# pip install psycopg2-binary
 
 DATABASES = {
     'default': dj_database_url.config(
