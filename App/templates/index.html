@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+
+<!-- Navbar content -->
+{% block navbar-content%}
+<i class="text-warning fas fa-tshirt"></i>&nbsp;&nbsp; INDEX
+{% endblock navbar-content%}
+
+
+<!-- Page content -->
+{% block content %}
+<div class='container'>
+
+<br>
+
+<a href="{% url 'home'%}" class="btn btn-outline-secondary btn-sm m-5 "><i class="fas fa-plus"></i>&nbsp;&nbsp; App con despliegue en páginas independientes</a>
+<a href="/home">App con despliegue en páginas independientes</a>
+<hr>
+<a href="{% url 'home2' %}" class="btn btn-primary m-5 "> &nbsp;&nbsp;App con despliegue en Modales</a>
+
+
+{% endblock content %}
+</div>
+        
