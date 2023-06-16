@@ -13,9 +13,14 @@
 
 
 from pathlib import Path
+
 ## Nuevas cargas
 import os
-import dj_database_url
+
+
+import environ
+env = environ.Env()
+environ.Env.read_env()
 
 ## Generar el archivo requirements.txt en basedir para agregar nuestras dependencias,
 ## para el caso de usar Render en este se puede utilizar Poetry, ver en el
@@ -112,12 +117,13 @@ print('PATH : ', Path)
 ## finalmente agregar modulo de postgre
 ##   pip install psycopg2-binary
 
+import dj_database_url
+
 DATABASES = {
-    'default': dj_database_url.config(
-        # Feel free to alter this value to suit your needs.
-        default='postgresql://postgres:postgres@localhost/postgres',
-        conn_max_age=600
-    )
+    'default': dj_database_url.parse(env('DATABASE_URL'),
+    conn_max_age=600,
+    conn_health_checks=True,
+)
 }
 
 
