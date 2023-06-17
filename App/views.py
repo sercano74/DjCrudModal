@@ -12,7 +12,6 @@ def index(request):
 
 # ====================== VIEWS PARA VERSION CON MODAL 100% =========================
 
-
 def home(request):
     all_product=Product.objects.all().order_by('-created')
     return render(request,'home.html', {'products':all_product})
